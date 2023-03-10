@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="/profile.css" rel="stylesheet">
+    <link rel="stylesheet" href="/base.css">
+    <link rel="stylesheet" href="/media/media-profile.css">
+    <link rel="stylesheet" href="/media/media-header.css">
+    <script src="/base.js" defer></script>
+    <script>
+        fetch('https://polisen.se/api/events')
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                // Work with JSON data here
+                const list = document.querySelector(".news .box #scroll ul")
+                data.map(item => {
+                    const a = document.createElement("a")
+                    a.href = "https://polisen.se" + item.url
+                    a.target = "_blank"
+                    const li = document.createElement("li")
+                    li.innerText = item.name
+                    a.append(li)
+                    list.appendChild(a)
+                })
+            });
+    </script>
+    <title>Profile</title>
+</head>
+<body>
+<header id="box">
+    <div class="logo">
+        <a href="https://www.facebook.com/" target="_blank"><img src="/img/lila.png" alt="logo"></a>
+    </div>
+    <div class="h1">
+        <img id="img2" src="/img/cool.png" alt="logo">
+    </div>
+    <div class="cont">
+        <a href="/profile">
+            <% if (typeof user.img !== "undefined") { %>
+                <img src="<%= user.img.replace("/public", "") %>" alt="">
+            <% } else { %>
+                <img src="/img/profile-icon-png-898.png" alt="">
+            <% } %>
+        </a>
+        <div class="dropdown">
+            <button onclick="dropdown()" class="dropbtn">Menu &#8595</button>
+            <div id="myDropdown" class="dropdown-content">
+                <a href="/home">Home</a>
+                <a href="/poptions">Profile options</a>
+                <a href="/logout">Logout</a>
+            </div>
+        </div>
+    </div>
+</header>
+<main>
+
+    <div class="news">
+        <div class="box">
+            <h1>News</h1>
+            <div id="scroll">
+                <ul id="mylist">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="profile">
+        <div class="profile-pic">
+            <% if (typeof user.img !== "undefined") { %>
+                <img src="<%= user.img.replace("/public", "") %>" alt="">
+            <% } else { %>
+                <img src="/img/profile-icon-png-898.png" alt="">
+            <% } %>
+        </div>
+
+        <div class="username">
+            <h1><%= user.txt %></h1>
+        </div>
+    </div>
+    <div class="uploads">
+        <div class="box">
+            <h1>Uploads</h1>
+            <div id="scroll">
+                <ul>
+                    <% for (const item of posts) { %>
+                        <li>
+                            <%= item.title %>
+                            <% if (item.img) { %>
+                                <img src="<%= item.img.replace("/public", "") %>" alt="">
+                            <% } %>
+                        </li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+</main>
+</body>
+</html>

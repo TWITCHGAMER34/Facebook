@@ -1,0 +1,66 @@
+.fields{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 0 0 10px;
+    padding: 0;
+    list-style: none;
+    clear: both;
+    overflow: hidden;
+    gap: 20px;
+}
+#editbtn{
+    border: white 1px solid;
+    border-radius: 10px;
+    background-color: #24204F;
+    color: white;
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+    list-style: none;
+    text-decoration: none;
+    align-content: center;
+    justify-content: center;
+}
+#editbtn:hover{
+    background-color: #3B3B98;
+    color: white;
+    text-decoration: none;
+    transition: 1s;
+}
+#title {
+    width: 100%;
+    text-align: center;
+    margin-top: 200px;
+    color:white;
+    padding: 0;
+    list-style: none;
+    clear: both;
+    overflow: hidden;
+    align-content: center;
+    justify-content: center;
+}
+
+#pic{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#pic img {
+    max-height: max(100px, 50vh);
+    border: white 1px solid;
+    border-radius: 10px;
+}
+#pic h1{
+    color: white;
+    text-align: center;
+
+    padding: 0;
+    list-style: none;
+    clear: both;
+    overflow: hidden;
+    align-content: center;
+    justify-content: center;
+}

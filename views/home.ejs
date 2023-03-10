@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/home.css">
+    <link rel="stylesheet" href="/base.css">
+    <link rel="stylesheet" href="/media/media-home.css">
+    <link rel="stylesheet" href="/media/media-header.css">
+    <script src="/base.js" defer></script>
+    <title>Home page</title>
+    <script>
+        fetch('https://polisen.se/api/events') // Call the fetch function passing the url of the API as a parameter
+            .then(response => { // Your code for handling the data you get from the API
+                return response.json() // Transform the data into json
+            })
+            .then(data => {
+                // Work with JSON data here
+                const list = document.querySelector(".News .box > ul") // Get the <ul> element with id of "myList"
+                data.map(item => { // Loop over the data and add a list item.
+                    const a = document.createElement("a") // Create the elements we need
+                    a.href = "https://polisen.se" + item.url // Add the data to the elements
+                    a.target = "_blank" // IF you click the link it will open in a new tab
+                    const li = document.createElement("li") // Create the elements we need
+                    li.innerText = item.name // Add the data to the elements
+                    a.append(li) // Add the <li> to the <a>
+                    list.appendChild(a) // Add the <a> to the <ul>
+                })
+            });
+    </script>
+</head>
+<body>
+<header id="box">
+    <div class="logo">
+        <a href="https://www.facebook.com/" target="_blank"><img src="/img/lila.png" alt="logo"></a>
+    </div>
+    <div class="h1">
+        <img id="img2" src="/img/cool.png" alt="logo">
+    </div>
+    <div class="cont">
+        <a href="/profile">
+            <% if (user && typeof user.img === "string") { %>
+                <img src="<%= user.img.replace("/public", "") %>" alt="">
+            <% } else { %>
+                <img src="/img/profile-icon-png-898.png" alt="">
+            <% } %>
+        </a>
+        <div class="dropdown">
+            <button onclick="dropdown()" class="dropbtn">Menu &#8595</button>
+            <div id="myDropdown" class="dropdown-content">
+                <a href="/poptions">Profile options</a>
+                <a href="/logout">Log out</a>
+            </div>
+        </div>
+    </div>
+</header>
+<main>
+    <div class="feed">
+        <div class="feed-thing">
+            <h1>FEED</h1>
+            <button id="ladda-upp">
+                <a href="/upload">Ladda upp</a>
+            </button>
+        </div>
+        <ul>
+            <% for (const item of posts) { %>
+                <li>
+                    <div id="post-header">
+                        <p id="post-owner"> By: <%= item.user.txt %></p>
+                        <p id="post-title"> Title: <%= item.title %></p>
+                    </div>
+                    <% if (user._id === item.user_id) { %>
+                        <div class="button-list">
+                            <button id="edit" data-id="<%= item.id %>">Edit</button>
+                            <form id="bob" action="/post-delete" method="post">
+                                <input type="hidden" name="id" value="<%= item.id %>">
+                                <button type="submit">
+                                    Delete post
+                                </button>
+                            </form>
+                        </div>
+
+                    <% } %>
+                    <% if (item.img) { %>
+                        <img src="<%= item.img.replace("/public", "") %>" alt="">
+                    <% } %>
+                </li>
+            <% } %>
+        </ul>
+    </div>
+    <div class="News">
+        <div class="box">
+            <h1>News</h1>
+            <ul id="mylist">
+
+            </ul>
+
+
+        </div>
+
+    </div>
+</main>
+
+</body>
+</html>
+
+<script>
+    const editButtons = document.querySelectorAll("#edit")
+    editButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const id = button.dataset.id
+            window.location.href = `/edit/${id}`
+        })
+    })
+    //NIKLAS GJORDE DENNA
+    document.querySelector('#bob').addEventListener('click', (e)=>{
+        if(!confirm('are you sure?')){
+            e.preventDefault()
+        }
+
+    })
+</script>

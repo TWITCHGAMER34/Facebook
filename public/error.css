@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+    background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+}
+h1{
+    font-size: 5em;
+    font-weight: 100;
+    margin: 0;
+    text-align: center;
+}
+h2{
+    font-size: 5em;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    display: flex;
+    margin-top: 0;
+}
+.error hr{
+    width: 100%;
+    margin-left:0;
+}
+.error {
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s;
+}

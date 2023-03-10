@@ -1,0 +1,29 @@
+@media screen and (max-width: 390px) {
+    .News .box {
+        height: 500px;
+        width: 100vw;
+        margin-top: 100px;
+        margin-bottom: 20px;
+    }
+    .feed {
+        height: 95vh;
+        width: 100vw;
+        margin-top: 700px;
+    }
+    .feed ul{
+        max-height: calc(100vh - 100px)
+    }
+    .News .box ul {
+        max-height: calc(100vh - 100px)
+    }
+    #post-header p{
+        font-size: 20px;
+        margin-top: 60px;
+    }
+}
+@media screen and (max-width: 1180px){
+    #post-header p{
+        font-size: 20px;
+        margin-top: 60px;
+    }
+}

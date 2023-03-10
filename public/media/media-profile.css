@@ -1,0 +1,25 @@
+@media screen and (max-width: 390px){
+    .news{
+        margin-top: 900px;
+        height: 100vh;
+        margin-bottom: 20px;
+
+    }
+    .news .box{
+        width: 100%;
+    }
+    .uploads .box{
+        width: 100%;
+    }
+    .uploads{
+        margin-bottom: 50px;
+        height: 100vh;
+    }
+    .profile .profile-pic img{
+        width: 150px;
+        height: 150px;
+    }
+    .profile .username{
+        font-size: 10px;
+    }
+}
